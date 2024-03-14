@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create(static::getConfigTable(), function (Blueprint $table) {
+            $table->id();
+            $table->string('group')->index();
+            $table->string('key')->index();
+            $table->string('type')->index()->default('string'); // \TiagoF2\LaravelSiteConfig\Helpers\SiteConfigManager::TYPES
+            $table->longText('value')->nullable(); // Serialized value
+            $table->boolean('active')->index()->default(true);
+            $table->boolean('persistent')->index()->default(false); // Not deletable
+            $table->timestamps();
+
+            $table->unique([
+                'group',
+                'key',
+            ]);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists(static::getConfigTable());
+    }
+
+    public static function getConfigTable(): string
+    {
+        return config('site-config.tables.config_table', 'site_configs');
+    }
+};

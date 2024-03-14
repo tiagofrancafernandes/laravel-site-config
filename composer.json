@@ -1,0 +1,67 @@
+{
+    "name": "tiagof2/laravel-site-config",
+    "description": "A package to easily make use of config in your Laravel project.",
+    "keywords": [
+        "Config",
+        "DB",
+        "Laravel",
+        "helpers"
+    ],
+    "homepage": "https://github.com/tiagofrancafernandes/laravel-site-config",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/tiagofrancafernandes/laravel-site-config/issues",
+        "source": "https://github.com/tiagofrancafernandes/laravel-site-config"
+    },
+    "authors": [
+        {
+            "name": "Tiago França",
+            "homepage": "https://tiagofranca.com"
+        }
+    ],
+    "funding": [
+        {
+            "type": "paypal",
+            "url": "https://www.paypal.com/paypalme/devtiagofranca"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-package-tools": "^1.16",
+        "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0",
+        "illuminate/filesystem": "^8.0|^9.0|^10.0|^11.0",
+        "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+        "symfony/console": "^5.3|^6.0|^7.0",
+        "symfony/finder": "^5.3|^6.0|^7.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5.1",
+        "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0",
+        "phpunit/phpunit": "^9.0|^10.5|^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TiagoF2\\LaravelSiteConfig\\": "src"
+        },
+        "files": [
+            "files/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TiagoF2\\LaravelSiteConfig\\LaravelSiteConfigServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
