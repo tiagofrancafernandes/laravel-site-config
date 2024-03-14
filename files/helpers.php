@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Support\Arr;
 use App\Models\SiteConfig;
 use TiagoF2\LaravelSiteConfig\Helpers\SiteConfigManager;
 use TiagoF2\LaravelSiteConfig\Helpers\SerializeHelpers;
-
 
 if (!function_exists('siteConfig')) {
     /**

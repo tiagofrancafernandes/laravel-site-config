@@ -35,6 +35,7 @@
         "symfony/finder": "^5.3|^6.0|^7.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.14",
         "mockery/mockery": "^1.5.1",
         "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0",
         "phpunit/phpunit": "^9.0|^10.5|^11.0"
@@ -56,7 +57,11 @@
         "laravel": {
             "providers": [
                 "TiagoF2\\LaravelSiteConfig\\LaravelSiteConfigServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "SiteConfigManager": "TiagoF2\\LaravelSiteConfig\\Helpers\\SiteConfigManager",
+                "SiteConfig": "TiagoF2\\LaravelSiteConfig\\Models\\SiteConfig"
+            }
         }
     },
     "config": {

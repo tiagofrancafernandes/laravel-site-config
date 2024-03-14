@@ -5,10 +5,8 @@ namespace TiagoF2\LaravelSiteConfig\Helpers;
 use TiagoF2\LaravelSiteConfig\Models\SiteConfig;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use TiagoF2\LaravelSiteConfig\Helpers\SerializeHelpers;
 use Throwable;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
 use TiagoF2\LaravelSiteConfig\Contracts\SiteConfigContract;
 
 class SiteConfigManager
@@ -55,6 +53,7 @@ class SiteConfigManager
     ): ?array {
         if (!$keyNotation) {
             static::handleError('Invalid "keyNotation". Must be valid screen', $throwOnError);
+
             return null;
         }
 
@@ -65,6 +64,7 @@ class SiteConfigManager
 
         if (!$group || !$key) {
             static::handleError('Invalid "keyNotation". Must be like "group.key"', $throwOnError);
+
             return null;
         }
 
@@ -140,7 +140,7 @@ class SiteConfigManager
         return cache()->remember(
             $cacheKey,
             static::getCacheTime(),
-            fn() => SiteConfig::activeOnly()
+            fn () => SiteConfig::activeOnly()
                 ->whereNotNull('group')
                 ->whereNotNull('key')
                 ->where('group', $group)
@@ -171,9 +171,7 @@ class SiteConfigManager
             return 0;
         }
 
-        $cacheTime = filter_var(config('site-config.cache.cache_time', 3600), FILTER_VALIDATE_INT) ?: 3600;
-
-        return $cacheTime;
+        return filter_var(config('site-config.cache.cache_time', 3600), FILTER_VALIDATE_INT) ?: 3600;
     }
 
     /**
@@ -282,7 +280,7 @@ class SiteConfigManager
         mixed $type,
         mixed $default = null,
     ): mixed {
-        $types = array_reduce(static::TYPES, fn($carry, $item) => array_merge($carry, $item), []);
+        $types = array_reduce(static::TYPES, fn ($carry, $item) => array_merge($carry, $item), []);
 
         $errorVal = '_ERROR_' . uniqid();
 
@@ -341,7 +339,7 @@ class SiteConfigManager
             default => $default ?? gettype($value),
         };
 
-        $types = array_reduce(static::TYPES, fn($carry, $item) => array_merge($carry, $item), []);
+        $types = array_reduce(static::TYPES, fn ($carry, $item) => array_merge($carry, $item), []);
 
         if (!in_array($namedType, $types)) {
             return 'text';
@@ -428,7 +426,7 @@ class SiteConfigManager
             return $default;
         }
 
-        return config($keyNotation);
+        return config($keyNotation, $default);
     }
 
     /**
